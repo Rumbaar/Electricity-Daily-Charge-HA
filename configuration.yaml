@@ -1,7 +1,7 @@
 template:
   - sensor:
       - name: "DailyCharge"
-        unique_id: "7ac7c3b4-1238-4961-9b61-cc2cc8657e7d"
+        unique_id: "7ac7c3b4-1238-4961-9b61-cc2cc8sample"
         unit_of_measurement: "kWh"
         device_class: energy
         state_class: total_increasing
