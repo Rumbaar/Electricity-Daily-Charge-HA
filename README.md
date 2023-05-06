@@ -29,6 +29,10 @@ Example for the Australian Electricity Market; suppliers charge a flat daily rat
   }
 }
 ```
+![image](https://user-images.githubusercontent.com/84074944/236602934-6b74bd3e-8dc6-4f31-92e6-7c689256d119.png)
+
+![image](https://user-images.githubusercontent.com/84074944/236602914-010a9213-4925-443b-bd8e-7fd82c9df4be.png)
+
 2. Create a Helper - "Input Dateime" called "DailyChargeStartTime" which is the start time used in the calculation of the '1W' over the 24 hours which is devided over the whole day and increases hourly for the hour segments in the Energy Dashboard.
 ```yaml
 {
@@ -48,23 +52,28 @@ Example for the Australian Electricity Market; suppliers charge a flat daily rat
   }
 }
 ```
-3. Create an automation to reset the Date/Time at the start of the day to reset the usage calcuation for the day.
+![image](https://user-images.githubusercontent.com/84074944/236603011-909859c3-4f39-41b3-a061-93f18aad32e8.png)
+
+![image](https://user-images.githubusercontent.com/84074944/236602979-37dc30e4-7e49-478d-821d-657156c87714.png)
+
+3. Create an automation to reset the Date/Time at the start of the day to reset the usage calcuation for the day, raw YAML in automation.yaml. You'll need to define the "Actions" code via "Edit in YAML" as the syntax required is avalable via the visual editor (as of 2023.5).
 ```yaml
-- id: '1681734sample'
-  alias: Reset DailyChargeTimer at Midnight
-  description: ''
-  trigger:
+alias: Reset DailyChargeTimer at Midnight
+description: ""
+trigger:
   - platform: time
-    at: 00:00:00
-  condition: []
-  action:
+    at: "00:00:00"
+condition: []
+action:
   - service: input_datetime.set_datetime
     data:
-      datetime: '{{ (now() | string)[:19] }}'
+      datetime: "{{ (now() | string)[:19] }}"
     target:
       entity_id: input_datetime.dailychargestarttime
-  mode: single
+mode: single
   ```
+  ![image](https://user-images.githubusercontent.com/84074944/236603175-9f391dfa-cf62-4e15-9ff8-d3f0052b47cc.png)
+
 4. Add the Energy Sensor code for the "DailyCharge" entity to the appropriate configuration.yaml file.
 ```yaml
 template:
@@ -80,5 +89,8 @@ template:
 ```
 5. Restart Home Assistant
 6. Define the new "DailyCharge" sensor via your Energy Dashbaord settings under Electricity grid => Grid consumption.  It can take 24 hours for the values and figures to be correct.
+
+![image](https://user-images.githubusercontent.com/84074944/236603235-3011472a-8c6e-4a51-a783-dc146422c32b.png)
+
 ![image](https://user-images.githubusercontent.com/84074944/236602812-069a9678-6892-45f0-b5c8-c5f92531cb3b.png)
 
