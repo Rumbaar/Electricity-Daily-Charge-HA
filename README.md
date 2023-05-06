@@ -8,8 +8,77 @@ Example for the Australian Electricity Market; suppliers charge a flat daily rat
 ## Basic steps to expand in more detail
 
 1. Create a Helper - "Input Number" called "ElectrictyDaily" which is the base daily cost * 1000 (this is due to work around reducing the daily usage hack of 1W over 24 hours to have almost no impact to the total power metering).  Refer to input_number.yaml in the files section.
+```yaml
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_number",
+  "data": {
+    "items": [
+      {
+        "id": "electricitydaily",
+        "min": 0.0,
+        "max": 1500.0,
+        "name": "ElectricityDaily",
+        "icon": "mdi:currency-usd",
+        "step": 0.01,
+        "unit_of_measurement": "AUD/kWh",
+        "mode": "box"
+      }
+    ]
+  }
+}
+```
 2. Create a Helper - "Input Dateime" called "DailyChargeStartTime" which is the start time used in the calculation of the '1W' over the 24 hours which is devided over the whole day and increases hourly for the hour segments in the Energy Dashboard.
+```yaml
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_datetime",
+  "data": {
+    "items": [
+      {
+        "id": "dailychargestarttime",
+        "has_time": true,
+        "has_date": true,
+        "name": "DailyChargeStartTime",
+        "icon": "mdi:clock-time-twelve-outline"
+      }
+    ]
+  }
+}
+```
 3. Create an automation to reset the Date/Time at the start of the day to reset the usage calcuation for the day.
+```yaml
+- id: '1681734sample'
+  alias: Reset DailyChargeTimer at Midnight
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - service: input_datetime.set_datetime
+    data:
+      datetime: '{{ (now() | string)[:19] }}'
+    target:
+      entity_id: input_datetime.dailychargestarttime
+  mode: single
+  ```
 4. Add the Energy Sensor code for the "DailyCharge" entity to the appropriate configuration.yaml file.
+```yaml
+template:
+  - sensor:
+      - name: "DailyCharge"
+        unique_id: "7ac7c3b4-1238-4961-9b61-cc2cc8sample"
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+        icon: mdi:solar-power
+        state: >
+          {{ (((as_timestamp(states('sensor.date_time_iso'))) - (as_timestamp(states('input_datetime.dailychargestarttime')))) / 86400 * 0.001) | round(5) }}
+```
 5. Restart Home Assistant
 6. Define the new "DailyCharge" sensor via your Energy Dashbaord settings under Electricity grid => Grid consumption.  It can take 24 hours for the values and figures to be correct.
+![image](https://user-images.githubusercontent.com/84074944/236602812-069a9678-6892-45f0-b5c8-c5f92531cb3b.png)
+
