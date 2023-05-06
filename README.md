@@ -7,7 +7,7 @@ Example for the Australian Electricity Market; suppliers charge a flat daily rat
 
 ## Basic steps to expand in more detail
 
-1. Create a Helper - "Input Number" called "ElectrictyDaily" which is the base daily cost * 1000 (this is due to work around reducing the daily usage hack of 1W over 24 hours to have almost no impact to the total power metering).  Refer to input_number.yaml in the files section.
+1. Create a Helper - "Input Number" called "ElectrictyDaily" which is the base daily cost * 1000 (this is due to work around reducing the daily usage hack of 1W over 24 hours to have almost no impact to the total power metering).  Refer to input_number.yaml in the files section.  You will need to create this via the GUI, as access to the storage area for helper code isn't readily available.  Example is for format syntax purposes.
 ```yaml
 {
   "version": 1,
@@ -33,7 +33,7 @@ Example for the Australian Electricity Market; suppliers charge a flat daily rat
 
 ![image](https://user-images.githubusercontent.com/84074944/236602914-010a9213-4925-443b-bd8e-7fd82c9df4be.png)
 
-2. Create a Helper - "Input Dateime" called "DailyChargeStartTime" which is the start time used in the calculation of the '1W' over the 24 hours which is devided over the whole day and increases hourly for the hour segments in the Energy Dashboard.
+2. Create a Helper - "Input Dateime" called "DailyChargeStartTime" which is the start time used in the calculation of the '1W' over the 24 hours which is devided over the whole day and increases hourly for the hour segments in the Energy Dashboard. You will need to create this via the GUI, as access to the storage area for helper code isn't readily available.  Example is for format syntax purposes.
 ```yaml
 {
   "version": 1,
