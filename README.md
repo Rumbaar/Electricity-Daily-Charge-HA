@@ -1,4 +1,4 @@
-# Electricity Daily Usage - Home Assistant [Energy Dashboard]
+# Electricity Daily Charge - Home Assistant [Energy Dashboard]
 Calculation of a static daily rate change for Electricity over 24 hours, inline with the hourly metric of the energy dashboard in Home Assistant.
 
 As of Home Assistant 2023.5 the inclusion of a daily flat Electricity rate within the Energy Dashboard and overall calculations isn't present or easily created to offer flat rate calculated over the 24 hour (hourly) daily dashboard.  Inspired by a hourly rate present in a locally available power monitor device (Powerpal) and hourly calcuations of HA Energy dashbaord this repository will look to create an energy sensor that will allow the input of a flat rate and then have that value split over the full day for a (at best) realtime cost.
