@@ -1,0 +1,14 @@
+- id: '168173460xxxx'
+  alias: Reset DailyChargeTimer at Midnight
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - service: input_datetime.set_datetime
+    data:
+      datetime: '{{ (now() | string)[:19] }}'
+    target:
+      entity_id: input_datetime.dailychargestarttime
+  mode: single
