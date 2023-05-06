@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_number",
+  "data": {
+    "items": [
+      {
+        "id": "electricitydaily",
+        "min": 0.0,
+        "max": 1500.0,
+        "name": "ElectricityDaily",
+        "icon": "mdi:currency-usd",
+        "step": 0.01,
+        "unit_of_measurement": "AUD/kWh",
+        "mode": "box"
+      }
+    ]
+  }
+}
