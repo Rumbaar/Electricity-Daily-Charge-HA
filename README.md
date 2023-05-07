@@ -88,9 +88,12 @@ template:
           {{ (((as_timestamp(states('sensor.date_time_iso'))) - (as_timestamp(states('input_datetime.dailychargestarttime')))) / 86400 * 0.001) | round(5) }}
 ```
 5. Restart Home Assistant
-6. Define the new "DailyCharge" sensor via your Energy Dashbaord settings under Electricity grid => Grid consumption.  It can take 24 hours for the values and figures to be correct.
+6. Define the new "DailyCharge" sensor via your Energy Dashbaord settings under Electricity grid => Grid consumption, and set the 'Use an entity with current price' with the "ElectricityDaily" Helper entity defined earlier.  It can take 24 hours for the values and figures to be correct.
 
 ![image](https://user-images.githubusercontent.com/84074944/236603235-3011472a-8c6e-4a51-a783-dc146422c32b.png)
+
+![image](https://user-images.githubusercontent.com/84074944/236661640-6efe8dea-3225-490b-bd3e-8f6edd112d24.png)
+
 
 ![image](https://user-images.githubusercontent.com/84074944/236602812-069a9678-6892-45f0-b5c8-c5f92531cb3b.png)
 
