@@ -56,7 +56,7 @@ Example for the Australian Electricity Market; suppliers charge a flat daily rat
 
 ![image](https://user-images.githubusercontent.com/84074944/236602979-37dc30e4-7e49-478d-821d-657156c87714.png)
 
-3. Create an automation to reset the Date/Time at the start of the day to reset the usage calcuation for the day, raw YAML in automation.yaml. You'll need to define the "Actions" code via "Edit in YAML" as the syntax required is avalable via the visual editor (as of 2023.5).
+3. Create an automation to reset the Date/Time at the start of the day to reset the usage calcuation for the day, raw YAML in automation.yaml. You'll need to define the "Actions" code via "Edit in YAML" as the syntax required isn't avalable via the visual editor (as of 2023.5).
 ```yaml
 alias: Reset DailyChargeTimer at Midnight
 description: ""
